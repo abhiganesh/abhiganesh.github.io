@@ -16,6 +16,7 @@ url: https://abhiganesh.github.io  # the base hostname and protocol for your sit
 # phone: (716) 555-5555
 repository: abhiganesh/abhiganesh.github.io
 github: [metadata]
+remote_theme: andrewbanchich/forty-jekyll-theme
 
 # homepage tiles
 tiles-source: pages # accepts "posts" or "pages"
