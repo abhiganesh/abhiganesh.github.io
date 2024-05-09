@@ -152,14 +152,34 @@ nav-menu: true
             });
         }
 
-        // Function to toggle photo expansion
+         // Function to toggle photo expansion
         function toggleExpand(element) {
+            const photosContainer = document.getElementById('photos');
+            const overlay = document.getElementById('overlay');
+
             element.classList.toggle('expanded');
 
             // Toggle visibility and z-index of the overlay
-            const overlay = document.getElementById('overlay');
             overlay.style.display = element.classList.contains('expanded') ? 'block' : 'none';
             overlay.style.zIndex = element.classList.contains('expanded') ? '999' : '-1';
+
+            // Add event listener to overlay to handle clicks
+            overlay.style.pointerEvents = element.classList.contains('expanded') ? 'auto' : 'none';
+
+            // Add event listener to document to handle clicks
+            if (element.classList.contains('expanded')) {
+                document.addEventListener('click', minimizeExpandedImage);
+            } else {
+                document.removeEventListener('click', minimizeExpandedImage);
+            }
+        }
+
+        // Function to minimize expanded image if click occurs outside the expanded image
+        function minimizeExpandedImage(event) {
+            const expandedImage = document.querySelector('.photo.expanded');
+            if (expandedImage && !expandedImage.contains(event.target)) {
+                toggleExpand(expandedImage);
+            }
         }
 
         // Call functions to prepare and generate photos when the page loads
