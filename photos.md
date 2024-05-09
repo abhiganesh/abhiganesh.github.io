@@ -102,11 +102,11 @@ nav-menu: true
 <body>
     <div id="overlay"></div> <!-- Overlay element -->
     <div id="title">
-        <p>Shot on 35mm.</p>
+        <p>All shot on 35mm film. Refresh to shuffle!</p>
     </div>
     <div id="photos">
         {% for photo in site.static_files %}
-            {% if photo.path contains '/assets/photos/' %}
+            {% if photo.path contains '/assets/compressed/' %}
                 <div class="photo" onclick="toggleExpand(this)">
                     <img src="{{ photo.path | remove_first: '/' }}" alt="{{ photo.name }}">
                     <div class="description">{{ photo.name | split: '.' | first }}</div>
@@ -130,11 +130,11 @@ nav-menu: true
         // Function to populate photoPaths and shuffle it
         function preparePhotos() {
             {% for photo in site.static_files %}
-                {% if photo.path contains '/assets/photos/' %}
+                {% if photo.path contains '/assets/compressed/' %}
                     photoPaths.push("{{ photo.path | remove_first: '/' }}");
                 {% endif %}
             {% endfor %}
-            <!-- photoPaths = shuffleArray(photoPaths); -->
+            photoPaths = shuffleArray(photoPaths);
         }
 
         // Function to generate photo elements and append them to the photos container
