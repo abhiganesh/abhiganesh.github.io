@@ -15,7 +15,7 @@ baseurl: "/home" # the subpath of your site, e.g. /blog
 # country: United States of America
 # phone: (716) 555-5555
 repository: abhiganesh/abhiganesh.github.io
-
+github: [metadata]
 
 # homepage tiles
 tiles-source: pages # accepts "posts" or "pages"
