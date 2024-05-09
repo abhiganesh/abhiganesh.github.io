@@ -10,7 +10,7 @@
 </header>
 
 <!-- Menu -->
-<nav id="menu">
+<!-- <nav id="menu">
 	<ul class="links">
         {% for page in site.pages %}
 		    {% if page.layout == "home" %}
@@ -23,8 +23,43 @@
 		    {% endif %}
 		{% endfor %}
 	</ul>
-	<ul class="actions vertical">
-		<li><a href="#" class="button special fit">Get Started</a></li>
-		<li><a href="#" class="button fit">Log In</a></li>
-	</ul>
+</nav> -->
+
+<!-- Menu -->
+<nav id="menu">
+    <ul class="links">
+        <!-- Home -->
+        {% for page in site.pages %}
+            {% if page.layout == "home" %}
+                <li><a href="{{ "" | absolute_url }}/">{{ page.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+        <!-- Resume -->
+        {% for page in site.html_pages %}
+            {% if page.title == "Resume" %}
+                <li><a href="{{ page.url | absolute_url }}">{{ page.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+        <!-- Teaching -->
+        {% for page in site.html_pages %}
+            {% if page.title == "Teaching" %}
+                <li><a href="{{ page.url | absolute_url }}">{{ page.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+        <!-- Photos -->
+        {% for page in site.html_pages %}
+            {% if page.title == "Photos" %}
+                <li><a href="{{ page.url | absolute_url }}">{{ page.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+        <!-- Other Pages -->
+        {% for page in site.html_pages %}
+            {% unless page.layout == "home" or page.title == "Resume" or page.title == "Teaching" or page.title == "Photos" %}
+			{% if page.layout != "home" and page.nav-menu == true %}
+                <li><a href="{{ page.url | absolute_url }}">{{ page.title }}</a></li>
+			{% endif %}
+            {% endunless %}
+        {% endfor %}
+    </ul>
 </nav>
+

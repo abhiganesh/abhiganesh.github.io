@@ -349,4 +349,73 @@
 
 	});
 
+	 // Text rotation code
+	 var textRotationElement = document.getElementById('text-rotation');
+	 var cursorElement = document.createElement('span');
+	 cursorElement.textContent = '|'; // Cursor symbol
+	 cursorElement.style.display = 'none'; // Initially hide cursor
+	 cursorElement.style.fontWeight = 'lighter'; // Make cursor thinner
+	 cursorElement.style.height = '1.2em'; // Make cursor taller
+	 textRotationElement.parentNode.appendChild(cursorElement); // Append cursor to parent of text rotation element
+ 
+	 var texts = ["Abhi.", "a Software Engineer.", "a teacher.", "a photographer.", "a writer."];
+	 var index = 0;
+ 
+	 function typeText(text, callback) {
+		 var i = 0;
+		 var typingInterval = setInterval(function() {
+			 if (i < text.length) {
+				 textRotationElement.textContent += text.charAt(i);
+				 i++;
+			 } else {
+				 clearInterval(typingInterval);
+				 callback();
+			 }
+		 }, 100); // Adjust the typing speed (lower value for faster typing)
+	 }
+ 
+	 function eraseText(callback) {
+		 var text = textRotationElement.textContent;
+		 var i = text.length - 1;
+		 var erasingInterval = setInterval(function() {
+			 if (i >= 0) {
+				 var newText = text.substring(0, i);
+				 textRotationElement.textContent = newText;
+				 i--;
+			 } else {
+				 clearInterval(erasingInterval);
+				 callback();
+			 }
+		 }, 50); // Adjust the erasing speed (lower value for faster erasing)
+	 }
+ 
+	 function rotateText() {
+		 var currentText = texts[index];
+		 typeText(currentText, function() {
+			 // Delay for longer duration if the text is "Abhi"
+			 var delay = currentText === "Abhi." ? 5000 : 2000; // Adjust the delay as needed
+			 // Wait for specified delay before erasing
+			 setTimeout(function() {
+				 eraseText(function() {
+					 // Move to the next text after erasing
+					 index = (index + 1) % texts.length;
+					 rotateText();
+				 });
+			 }, delay); // Adjust the delay before erasing text
+		 });
+	 }
+ 
+	 // Function to toggle cursor visibility (blink effect)
+	 function toggleCursor() {
+		 cursorElement.style.display = cursorElement.style.display === 'none' ? 'inline' : 'none';
+	 }
+ 
+	 // Call rotateText function initially
+	 rotateText();
+ 
+	 // Set interval to toggle cursor visibility (blink effect)
+	 setInterval(toggleCursor, 500); // Adjust the blinking speed (lower value for faster blinking)
+ 
+ 
+
 })(jQuery);
