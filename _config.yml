@@ -14,6 +14,7 @@ baseurl: "/home" # the subpath of your site, e.g. /blog
 # zip_code: 55555
 # country: United States of America
 # phone: (716) 555-5555
+repository: abhiganesh/abhiganesh.github.io
 
 
 # homepage tiles
