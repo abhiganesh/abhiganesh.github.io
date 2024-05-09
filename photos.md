@@ -102,7 +102,7 @@ nav-menu: true
 <body>
     <div id="overlay"></div> <!-- Overlay element -->
     <div id="title">
-        <p>Refresh the page to shuffle the order!</p>
+        <p>Shot on 35mm.</p>
     </div>
     <div id="photos">
         {% for photo in site.static_files %}
@@ -134,7 +134,7 @@ nav-menu: true
                     photoPaths.push("{{ photo.path | remove_first: '/' }}");
                 {% endif %}
             {% endfor %}
-            photoPaths = shuffleArray(photoPaths);
+            <!-- photoPaths = shuffleArray(photoPaths); -->
         }
 
         // Function to generate photo elements and append them to the photos container
