@@ -88,11 +88,17 @@ nav-menu: true
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-            backdrop-filter: blur(5px); /* Apply blur effect to the overlay */
+            background-color: rgba(0, 0, 0, 0.87); /* Semi-transparent black overlay */
+            backdrop-filter: blur(8px); /* Apply blur effect to the overlay */
             pointer-events: none; /* Allow click events to pass through the overlay */
             z-index: -1; /* Initially behind other elements */
             display: none; /* Initially hidden */
+        }
+        @media (max-width: 768px) {
+            #overlay {
+                background-color: rgba(0, 0, 0, 1); /* Completely opaque background on mobile */
+                backdrop-filter: none; /* Remove blur effect on mobile */
+            }
         }
         .photo.expanded {
             z-index: 1000; /* Ensure the expanded photo is on top of the overlay */
